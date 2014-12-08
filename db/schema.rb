@@ -11,11 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141204031609) do
+ActiveRecord::Schema.define(version: 20141208004701) do
 
   create_table "contests", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
+    t.string   "type"
+    t.time     "start"
+    t.time     "end"
+    t.integer  "capacity"
+    t.integer  "cost"
+    t.boolean  "public"
   end
 
   create_table "entries", force: true do |t|
@@ -46,12 +53,32 @@ ActiveRecord::Schema.define(version: 20141204031609) do
   create_table "players", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
+    t.string   "position"
+    t.integer  "salary"
+    t.string   "team"
   end
 
   create_table "stat_lines", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "player_id"
+    t.string   "position"
+    t.string   "team"
+    t.string   "opponent"
+    t.integer  "game"
+    t.integer  "cs"
+    t.integer  "kills"
+    t.integer  "deaths"
+    t.integer  "assists"
+    t.integer  "triples"
+    t.integer  "quadras"
+    t.integer  "pentas"
+    t.boolean  "win"
+    t.integer  "barons"
+    t.integer  "dragons"
+    t.integer  "towers"
+    t.boolean  "firstblood"
   end
 
   add_index "stat_lines", ["player_id"], name: "index_stat_lines_on_player_id"
@@ -59,6 +86,9 @@ ActiveRecord::Schema.define(version: 20141204031609) do
   create_table "users", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email"
+    t.string   "password_digest"
+    t.string   "username"
   end
 
 end
