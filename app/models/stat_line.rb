@@ -8,4 +8,5 @@ class StatLine < ActiveRecord::Base
 	# Team Statistics
 	attr_accessor :win, :barons, :dragons, :towers, :firstblood
 
+	belongs_to :player
 end
