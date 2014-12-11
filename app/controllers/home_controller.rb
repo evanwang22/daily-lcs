@@ -1,12 +1,11 @@
 class HomeController < ApplicationController
 
-  def show
-  	render nothing: true
-  end
+	# GET '/''
+	def home
+		@user = User.new
+	end
 
-  def welcome
-  end
-
+	# GET '/about'
   def about
   	render nothing: true
   end
