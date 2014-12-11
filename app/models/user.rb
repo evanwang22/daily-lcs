@@ -1,5 +1,9 @@
 class User < ActiveRecord::Base
-	attr_accessor :email, :username
+
+	has_secure_password
+
+	validates_presence_of :password, :email, :on => :create
+	validates_uniqueness_of :email
 
 	has_many :lineups
 	has_many :entries
