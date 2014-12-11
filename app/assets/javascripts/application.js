@@ -17,7 +17,7 @@
 //= require_tree .
 
 $(document).ready(function() {
-	loadPage('home');
+	loadWelcomePage();
 	loadNavigation('navigation');
 });
 
@@ -32,4 +32,9 @@ var loadPage = function(template, data) {
 
 var loadNavigation = function(template, data) {
 	loadPartial(template, data, 'navigation-container');
-}
+};
+
+var loadWelcomePage = function(template, data) {
+	loadPage('welcome');
+	loadPartial('signup', null, 'user-form');
+};
