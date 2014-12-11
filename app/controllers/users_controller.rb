@@ -1,10 +1,5 @@
 class UsersController < ApplicationController
 
-	# GET '/''
-	def new
-		@user = User.new
-	end
-
 	# POST '/users' (API)
   def create
 
@@ -19,8 +14,9 @@ class UsersController < ApplicationController
 
   private
 
+  	# Strong parameters allowing assignment of email & password
   	def user_params
-  		params.require(:user).permit(:email, :password)
+  		params.require(:user).permit(:email, :password, :username)
   	end
 
 end
