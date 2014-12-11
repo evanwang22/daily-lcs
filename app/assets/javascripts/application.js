@@ -15,3 +15,21 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(document).ready(function() {
+	loadPage('home');
+	loadNavigation('navigation');
+});
+
+var loadPartial = function(template, data, id) {
+	data = data || {};
+	$('#' + id).html(Handlebars.templates[template](data));
+};
+
+var loadPage = function(template, data) {
+	loadPartial(template, data, 'main-container');
+};
+
+var loadNavigation = function(template, data) {
+	loadPartial(template, data, 'navigation-container');
+}
