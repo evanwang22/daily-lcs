@@ -3,30 +3,19 @@
 <head>
   <title>DailyLcs</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', media: 'all' %>
   <%= javascript_include_tag 'handlebars.runtime-v2.0.0.js' %>
+  <%= javascript_include_tag 'templates.js' %>
+
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-    <!-- Static navbar -->
-    <nav class="navbar navbar-default navbar-static-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">Daily LCS</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="../navbar/">Login</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+  <div id="navigation-container">
+  </div>
+
+  <div id="main-container" class="container">
+  </div>
 
 <%= yield %>
 
