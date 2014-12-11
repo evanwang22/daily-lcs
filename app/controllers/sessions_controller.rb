@@ -1,11 +1,12 @@
 class SessionsController < ApplicationController
+  protect_from_forgery
 
 	# Creates a new user session
   def create
     # user emails are unique so we take the first object that matches
-    user = User.where(:email => params[:user][:email]).first
+    user = User.where(:email => params[:session][:email]).first
     # if user passes authentication
-    if user && user.authenticate(params[:user][:password])
+    if user && user.authenticate(params[:session][:password])
       session[:current_user_id] = user.id
       redirect_to contests_path
     else

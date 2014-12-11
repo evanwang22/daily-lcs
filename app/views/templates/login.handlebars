@@ -1,14 +1,14 @@
 <div class="header">
 	<h2>Log in</h2>
 </div>
-<form method="post" action="/sessions/create" role="form">  
+<form method="post" action="/login" role="form">  
 	<div class="form-group">
 	    <label for="email-input" class="control-label">Email address</label>
-		<input id="email-input" name="email" class="form-control" type="text"/>
+		<input id="email-input" name="session[email]" class="form-control" type="text"/>
 	</div>
  	<div class="form-group">
 		<label for="password-input" class="control-label">Password</label>
-		<input id="password-input" name="password" class="form-control" type="password"/>
+		<input id="password-input" name="session[password]" class="form-control" type="password"/>
 	</div>
  	<div class="form-group">
 	    <button type="submit" class="btn btn-theme-1 col-xs-6 submit">Log in</button>

@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
+  protect_from_forgery
 
 	# POST '/users' (API)
   def create
-
-  	@user = User.create(params[:user])
+  	@user = User.create(user_params)
   	
   	# Success response
   	render status: 200, :json => {
