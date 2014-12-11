@@ -1,6 +1,31 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "colors";
 
 .navbar {
 	margin-bottom: 0px;
+}
+
+.btn-theme-1 {
+	color: $white;
+	background-color:$theme1;
+}
+
+.btn-theme-1:active,
+.btn-theme-1:hover,
+.btn-theme-1:focus {
+	color: $white;
+	background-color:lighten($theme1, 3%);
+}
+
+.btn-theme-2 {
+	color: $white;
+	background-color:$theme2;
+}
+
+.btn-theme-2:active,
+.btn-theme-2:hover,
+.btn-theme-2:focus {
+	color: $white;
+	background-color:lighten($theme2, 3%);
 }
