@@ -1,7 +1,9 @@
 <div class="header">
 	<h2>Log in</h2>
 </div>
+<div class="horizontal-divider"></div>
 <form method="post" action="/login" role="form">  
+    <input name="authenticity_token" value="" type="hidden" class="authenticity-input"/>
 	<div class="form-group">
 	    <label for="email-input" class="control-label">Email address</label>
 		<input id="email-input" name="session[email]" class="form-control" type="text"/>

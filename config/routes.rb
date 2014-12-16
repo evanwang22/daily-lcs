@@ -3,14 +3,17 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'home#welcome'
+  root 'home#home'
+
+  get 'contests' => 'contests#show', as: :lobby
+  get 'contests/:id' => 'contests#view'
 
   post 'login' => 'sessions#create'
   get 'logout' => 'sessions#destroy'
   get 'profile' => 'users#show'
   
   get 'about' => 'home#about'
-  get 'welcome' => 'home#welcome'
+  get 'welcome' => 'home#welcome', as: :welcome
 
   get 'signup'  => 'users#new'
   post 'users' => 'users#create'

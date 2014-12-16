@@ -8,22 +8,22 @@ class SessionsController < ApplicationController
     # if user passes authentication
     if user && user.authenticate(params[:session][:password])
       session[:current_user_id] = user.id
-      redirect_to contests_path
+      redirect_to lobby_path
     else
     	# error path
-      render "new"
+      redirect_to welcome_path
     end
   end
 
   def destroy
-    session[:user_id] = nil
+    session[:current_user_id] = nil
     redirect_to root_url, :notice => "Logged out!"
   end
 
 	private
-  	# Strong parameters allowing assignment of email & password
-  	def user_params
-  		params.require(:user).permit(:email, :password)
-  	end
+	# Strong parameters allowing assignment of email & password
+	def user_params
+		params.require(:user).permit(:email, :password)
+	end
 
 end

@@ -16,9 +16,7 @@
 //= require turbolinks
 //= require_tree .
 
-$(window).load(function() {
-	loadWelcomePage();
-	loadNavigation('navigation');
+$(document).ready(function() {
 });
 
 var loadPartial = function(template, data, id) {

@@ -1,5 +1,5 @@
 class Contest < ActiveRecord::Base
-	attr_accessor :name, :type, :start, :end, :capacity, :cost, :public
+    self.inheritance_column = nil
 
 	has_many :entries
 	has_many :lineups , through: :entries

@@ -1,0 +1,20 @@
+<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a id="navbar-brand" class="navbar-brand" href="/home">Daily LCS</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <% if current_user %>
+          <li><a id="navbar-profile" href="/profile">Profile</a></li>
+        <% end %>
+          <li><a id="navbar-about" href="/about">About</a></li>
+        <% if current_user %>       
+          <li><a id="navbar-logout" href="/logout">Logout</a></li>
+        <% else %>
+          <li><a id="navbar-login" href="/login">Login</a></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>

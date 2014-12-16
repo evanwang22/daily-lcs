@@ -1,3 +1,37 @@
-// Place all the styles related to the Contests controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "colors";
+
+
+//// LOBBY ////
+#lobby-container {
+	background-color: $theme2;
+}
+
+#filters-container {
+	min-height: 100px;
+}
+
+#contest-table-container {
+	padding: 0px;
+}
+
+#contest-table-container .first {
+	padding-left: 15px;
+}
+
+#contest-table-container .last {
+	padding-right: 15px;
+}
+
+#contest-table-container .sortable {
+	cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+//// CONTEST ////

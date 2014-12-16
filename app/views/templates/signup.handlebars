@@ -1,7 +1,9 @@
 <div class="header">
 	<h2>Create an Account</h2>
 </div>
+<div class="horizontal-divider"></div>
 <form method="post" action="/users" role="form">
+    <input name="authenticity_token" value="" type="hidden" class="authenticity-input"/>
 	<div class="form-group">
 		<label for="username-input" class="control-label">Username</label>
 		<input id="username-input" name="user[username]" class="form-control" type="text"/>
