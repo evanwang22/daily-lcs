@@ -5,17 +5,17 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'home#home'
 
-  get 'contests' => 'contests#show', as: :lobby
-  get 'contests/:id' => 'contests#view'
+  get 'lobby' => 'contests#lobby', as: :lobby
+  get 'contests/:id' => 'contests#show'
+  get 'contests' => 'contest#index'
 
   post 'login' => 'sessions#create'
-  get 'logout' => 'sessions#destroy'
+  post 'logout' => 'sessions#destroy'
   get 'profile' => 'users#show'
   
   get 'about' => 'home#about'
   get 'welcome' => 'home#welcome', as: :welcome
 
-  get 'signup'  => 'users#new'
   post 'users' => 'users#create'
   
   # Example of regular route:

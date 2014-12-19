@@ -11,7 +11,7 @@ class HomeController < ApplicationController
 
 	def welcome
 		if current_user
-			redirect_to home_path
+			redirect_to lobby_path
 		else
 			@user = User.new
 		end

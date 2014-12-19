@@ -1,15 +1,15 @@
 class ContestsController < ApplicationController
-	def view
+	
+	def show
 		@contest = Contest.find(params[:id])
 	end
 
-	def show
+	def index
 		@contests = Contest.all
+		render json: @contests
+	end
 
-		respond_to do |format|
-			format.html {render 'show'}
-			format.json	{render json: @contests}
-		end
+	def lobby
 	end
 
 end
