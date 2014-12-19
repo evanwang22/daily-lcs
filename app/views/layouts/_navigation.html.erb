@@ -12,7 +12,6 @@
         <li><a id="navbar-about" href="/about">About</a></li> 
         -->
         <% if current_user %>       
-          <li><a id="navbar-logout" href="/logout">Logout</a></li>
           <li><%= link_to "Logout", logout_path, :method => "delete", :id => "navbar-logout"  %></li>
         <% end %>
       </ul>
