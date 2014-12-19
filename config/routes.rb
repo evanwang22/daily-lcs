@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get 'contests' => 'contests#index'
 
   post 'login' => 'sessions#create'
-  post 'logout' => 'sessions#destroy'
+  delete 'logout' => 'sessions#destroy'
   get 'profile' => 'users#show'
   
   get 'about' => 'home#about'
