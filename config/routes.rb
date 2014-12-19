@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   get 'lobby' => 'contests#lobby', as: :lobby
   get 'contests/:id' => 'contests#show'
-  get 'contests' => 'contest#index'
+  get 'contests' => 'contests#index'
 
   post 'login' => 'sessions#create'
   post 'logout' => 'sessions#destroy'
