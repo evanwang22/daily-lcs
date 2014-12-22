@@ -1,3 +1,12 @@
+<% content_for :head do %>
+	<%= javascript_include_tag "lobby" %>
+	<%= javascript_include_tag "lib/bootstrap-table" %>
+	<%= javascript_include_tag "lib/bootstrap-table-filter" %>
+
+	<%= stylesheet_link_tag "lobby" %>
+	<%= stylesheet_link_tag "bootstrap-table" %>
+<% end %>
+
 <div id="lobby-container" class="row">
   <div id="filters-container" class="col-sm-3">
   </div> 

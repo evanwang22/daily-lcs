@@ -198,7 +198,7 @@
             return sprintf('%s records per page', pageNumber);
         },
         formatShowingRows: function (pageFrom, pageTo, totalRows) {
-            return sprintf('Showing %s to %s of %s rows', pageFrom, pageTo, totalRows);
+            return sprintf('Showing %s to %s of %s contests', pageFrom, pageTo, totalRows);
         },
         formatSearch: function () {
             return 'Search';
@@ -288,7 +288,7 @@
 
         this.$container.insertAfter(this.$el);
         this.$container.find('.fixed-table-body').append(this.$el);
-        this.$container.after('<div class="clearfix"></div>');
+        this.$container.after('<div class="fixed-table-after clearfix"></div>');
         this.$loading = this.$container.find('.fixed-table-loading');
 
         this.$el.addClass(this.options.classes);
@@ -782,11 +782,11 @@
         });
         pageNumber.push('</ul></span>');
 
-        html.push(this.options.formatRecordsPerPage(pageNumber.join('')));
+        //html.push(this.options.formatRecordsPerPage(pageNumber.join('')));
         html.push('</span>');
 
         html.push('</div>',
-            '<div class="pull-right pagination">',
+            '<div class="pull-right">',
                 '<ul class="pagination">',
                     '<li class="page-first"><a href="javascript:void(0)">&lt;&lt;</a></li>',
                     '<li class="page-pre"><a href="javascript:void(0)">&lt;</a></li>');

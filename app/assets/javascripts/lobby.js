@@ -18,6 +18,8 @@ var lobbyLoadTable = function() {
 	$('#contest-table').bootstrapTable({
 	   	url: '/contests',
 	    striped: true,
+	    pagination: true,
+	    pageSize: 25,
 	    columns: [{
 	        field: 'name',
 	        title: 'Contest',

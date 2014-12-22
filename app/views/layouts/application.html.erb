@@ -2,11 +2,17 @@
 <html>
 <head>
   <title>Daily LCS</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'handlebars.runtime-v2.0.0.js' %>
-  <%= javascript_include_tag 'templates.js' %>
 
+  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "lib/handlebars.runtime-v2.0.0" %>
+  <%= javascript_include_tag "lib/moment.min" %>
+  <%= javascript_include_tag "templates" %>
+
+  <%= stylesheet_link_tag "application" %>
+  <%= stylesheet_link_tag "colors" %>
+  <%= stylesheet_link_tag "overrides" %>
+
+  <%= yield :head %>
   <%= csrf_meta_tags %>
 </head>
 <body>
