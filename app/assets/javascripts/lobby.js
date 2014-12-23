@@ -73,6 +73,3 @@ var lobbyLoadTable = function() {
 $(document).on('page:load', lobbyLoadTable);
 $(document).ready(lobbyLoadTable);
 
-var contestLoad = function() {
-	$.get('/contests/'+window.location.pathname)
-}
