@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   get 'welcome' => 'home#welcome', as: :welcome
 
   post 'users' => 'users#create'
+
+  resources :entries
   
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -4,7 +4,7 @@ class EntriesController < ApplicationController
 	# JSON
 	def index
 
-		@entries = Entries.all
+		@entries = Entry.all
 
 		@entries = @entries.by_contest(params[:contest_id]) if params[:contest_id].present? 
 		@entries = @entries.by_contest(params[:user_id]) if params[:user_id].present? 
