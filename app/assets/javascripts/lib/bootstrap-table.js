@@ -546,6 +546,8 @@
             timeoutId = 0,
             $keepOpen,
             $search,
+            $typeFilters,
+            $costFilters,
             switchableCount = 0;
 
         this.$toolbar = this.$container.find('.fixed-table-toolbar').html('');
@@ -638,15 +640,16 @@
         }
 
         if (this.options.search) {
-            html = [];
-            html.push(
-                '<div class="pull-' + this.options.searchAlign + ' search">',
-                    sprintf('<input class="form-control" type="text" placeholder="%s">',
-                        this.options.formatSearch()),
-                '</div>');
+            
+            // html = [];
+            // html.push(
+            //     '<div class="pull-' + this.options.searchAlign + ' search">',
+            //         sprintf('<input class="form-control" type="text" placeholder="%s">',
+            //             this.options.formatSearch()),
+            //     '</div>');
 
-            this.$toolbar.append(html.join(''));
-            $search = this.$toolbar.find('.search input');
+            // this.$toolbar.append(html.join(''));
+            $search = $('.search input');
             $search.off('keyup').on('keyup', function (event) {
                 clearTimeout(timeoutId); // doesn't matter if it's 0
                 timeoutId = setTimeout(function () {
@@ -654,13 +657,91 @@
                 }, that.options.searchTimeOut);
             });
         }
+
+        if (this.options.filter) {
+            $typeFilters = $('.type-filter');
+            $typeFilters.on('click', function (event) {
+                that.onFilter(event);
+            });
+            $costFilters = $('.cost-filter');
+            $costFilters.off('keyup').on('keyup', function (event) {
+                that.onFilter(event);
+            });            
+        }
     };
+
+    BootstrapTable.prototype.onFilter = function (event) {
+        var $target = $(event.currentTarget);
+        var $category = $target.parent().data('column');
+        var $value = $category == 'type' ? $target.data('value') : $.trim($target.val());
+        if (!this.filters)
+            this.filters = {};
+        if (!this.filters[$category]) 
+            this.filters[$category] = {};
+
+        if ($category == 'type') {
+            if ($value == 'all') {
+                $target.parent().find('.type-filter').removeClass('active');
+                for (var key in this.filters[$category]) {
+                    this.filters[$category][key] = false;
+                }
+            }
+            else {
+                this.filters[$category][$value] = !this.filters[$category][$value];
+                $target.parent().find('.type-filter').first().removeClass('active');
+            }
+        }       
+        else if ($category == 'minimum') {
+            $value = isNaN(parseInt($value)) ? 0 : parseInt($value);
+            this.filters[$category] = $value;
+        } else if ($category == 'maximum') {
+            $value = isNaN(parseInt($value)) ? 1000 : parseInt($value);
+            this.filters[$category] = $value;
+        }            
+
+        this.initFilter();
+        this.initSearch();
+        this.options.pageNumber = 1;
+        this.updatePagination();
+    };
+
+    BootstrapTable.prototype.initFilter = function () {
+        if (!this.filters)
+            this.filters = {};
+        if (!this.filters['type']) 
+            this.filters['type'] = {};
+
+        var tf = false;
+        for (var key in this.filters['type']) {
+            if (this.filters['type'][key])
+                tf = true;
+        }
+        var filters = this.filters;
+        this.data = $.grep(this.options.data, function (item, i) {
+                var r = !tf;
+                for (var key in filters) {
+                    if (key == 'type' && tf) {
+                        for (var key2 in filters[key]) {
+                            if (filters['type'][key2] && item['type'] == key2) {
+                                r = true;
+                            }
+                        }
+                    }
+                    else if (key == 'minimum') {
+                        if (filters[key] && item['cost'] < filters[key])
+                            return false;
+                    }
+                    else if (key == 'maximum') {
+                        if (!isNaN(filters[key]) && item['cost'] > filters[key])
+                            return false;
+                    }
+                }
+                return r;
+            });
+    }
 
     BootstrapTable.prototype.onSearch = function (event) {
         var text = $.trim($(event.currentTarget).val());
-
-        // trim search input
-        $(event.currentTarget).val(text);
 
         if (text === this.searchText) {
             return;
@@ -668,6 +749,7 @@
         this.searchText = text;
 
         this.options.pageNumber = 1;
+        this.initFilter();
         this.initSearch();
         this.updatePagination();
         this.trigger('search', text);
@@ -680,15 +762,15 @@
             var s = this.searchText && this.searchText.toLowerCase();
             var f = $.isEmptyObject(this.filterColumns) ? null: this.filterColumns;
 
-            // Check filter
-            this.data = f ? $.grep(this.options.data, function (item, i) {
-                for (var key in f) {
-                    if (item[key] !== f[key]) {
-                        return false;
-                    }
-                }
-                return true;
-            }) : this.options.data;
+            // // Check filter
+            // this.data = f ? $.grep(this.options.data, function (item, i) {
+            //     for (var key in f) {
+            //         if (item[key] !== f[key]) {
+            //             return false;
+            //         }
+            //     }
+            //     return true;
+            // }) : this.options.data;
 
             this.data = s ? $.grep(this.data, function (item, i) {
                 for (var key in item) {
@@ -1353,11 +1435,12 @@
     };
 
     BootstrapTable.prototype.getData = function () {
-        return (this.searchText || !$.isEmptyObject(this.filterColumns)) ? this.data : this.options.data;
+        return (this.filters || this.searchText || !$.isEmptyObject(this.filterColumns)) ? this.data : this.options.data;
     };
 
     BootstrapTable.prototype.load = function (data) {
         this.initData(data);
+        this.initFilter();
         this.initSearch();
         this.initPagination();
         this.initBody();
@@ -1365,6 +1448,7 @@
 
     BootstrapTable.prototype.append = function (data) {
         this.initData(data, true);
+        this.initFilter();        
         this.initSearch();
         this.initPagination();
         this.initBody(true);
@@ -1393,6 +1477,7 @@
             return;
         }
 
+        this.initFilter();
         this.initSearch();
         this.initPagination();
         this.initBody(true);
@@ -1501,6 +1586,7 @@
     BootstrapTable.prototype.filterBy = function (columns) {
         this.filterColumns = $.isEmptyObject(columns) ? {}: columns;
         this.options.pageNumber = 1;
+        this.initFilter();
         this.initSearch();
         this.updatePagination();
     };
@@ -1590,73 +1676,5 @@
     $(function () {
         $('[data-toggle="table"]').bootstrapTable();
     });
-
-}(jQuery);
-
-/**
- * @author zhixin wen <wenzhixin2010@gmail.com>
- * extensions: https://github.com/lukaskral/bootstrap-table-filter
- */
-
-!function($) {
-
-    'use strict';
-
-    $.extend($.fn.bootstrapTable.defaults, {
-        showFilter: false
-    });
-
-    var BootstrapTable = $.fn.bootstrapTable.Constructor,
-        _init = BootstrapTable.prototype.init,
-        _initSearch = BootstrapTable.prototype.initSearch;
-
-    BootstrapTable.prototype.init = function () {
-        _init.apply(this, Array.prototype.slice.apply(arguments));
-
-        var that = this;
-        this.$el.on('load-success.bs.table', function () {
-            if (that.options.showFilter) {
-                $(that.options.toolbar).bootstrapTableFilter({
-                    connectTo: that.$el
-                });
-            }
-        });
-    };
-
-    BootstrapTable.prototype.initSearch = function () {
-        _initSearch.apply(this, Array.prototype.slice.apply(arguments));
-
-        if (this.options.sidePagination !== 'server') {
-            if (typeof this.searchCallback === 'function') {
-                this.data = $.grep(this.options.data, this.searchCallback);
-            }
-        }
-    };
-
-    BootstrapTable.prototype.getData = function () {
-        return (this.searchText || this.searchCallback) ? this.data : this.options.data;
-    };
-
-    BootstrapTable.prototype.getColumns = function () {
-        return this.options.columns;
-    };
-
-    BootstrapTable.prototype.registerSearchCallback = function (callback) {
-        this.searchCallback = callback;
-    };
-
-    BootstrapTable.prototype.updateSearch = function () {
-        this.options.pageNumber = 1;
-        this.initSearch();
-        this.updatePagination();
-    };
-
-    BootstrapTable.prototype.getServerUrl = function () {
-        return (this.options.sidePagination === 'server') ? this.options.url : false;
-    };
-
-    $.fn.bootstrapTable.methods.push('getColumns',
-        'registerSearchCallback', 'updateSearch',
-        'getServerUrl');
 
 }(jQuery);

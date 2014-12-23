@@ -1,6 +1,3 @@
-$(document).on('page:load', loadWelcomePage);
-$(document).ready(loadWelcomePage);
-
 var loadWelcomePage = function(template, data) {
 	loadPartial('signup', null, 'welcome-form');
 	loadAuthenticityToken();
@@ -21,5 +18,7 @@ $(document).on('click', '#need-account', function(evt) {
 var loadAuthenticityToken = function() {
 	var token = $('meta[name=csrf-token]').attr("content");
 	$('.authenticity-input').val(token);
-}
+};
 
+$(document).on('page:load', loadWelcomePage);
+$(document).ready(loadWelcomePage);

@@ -1,3 +1,15 @@
+var typeFormatter = function(value, row, index) {
+	if (value == 'tournament')
+		return 'Tournament';
+	else if (value == 'league')
+		return 'League';
+	else if (value == 'h2h')
+		return 'Head-to-head';
+	else if (value == 'multiplier')
+		return 'Multiplier';
+	else
+		return value;
+};
 var timeFormatter = function(value, row, index) {
 	return "Thu 1:00pm";
 };
@@ -20,6 +32,8 @@ $(document).ready(function() {
 	    striped: true,
 	    pagination: true,
 	    pageSize: 25,
+	    search: true,
+	    filter: true,
 	    columns: [{
 	        field: 'name',
 	        title: 'Contest',
@@ -33,7 +47,8 @@ $(document).ready(function() {
 	        valign: 'middle',
 	        align: 'left',
 	        sortable: true,
-	        width: 100
+	        width: 125,
+	        formatter: typeFormatter
 	    }, {
 	        field: 'start',
 	        title: 'Start',

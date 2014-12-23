@@ -9,8 +9,50 @@
 
 <div id="lobby-container" class="row">
   <div id="filters-container" class="col-sm-3">
+    <div id="search" class="search col-xs-12">
+      <input class="form-control" type="text" placeholder="Search"/>
+    </div>
+    <div class="horizontal-divider col-xs-12">
+    </div>
+    <div id="filters" class="">
+      <!-- Contest Filters -->
+      <div id="type-filters" class="col-xs-6 col-sm-12">
+        <label class="filter-label"><h4>Contest Type</h4></label>
+        <div data-column="type" data-toggle="buttons">
+          <div class="btn btn-theme-1 type-filter col-xs-12" data-value="all">
+            <input type="checkbox" autocomplete="off"> All Contests
+          </div>
+          <div class="btn btn-theme-1 type-filter col-xs-12" data-value="tournament">
+            <input type="checkbox" autocomplete="off"> Tournament
+          </div>
+          <div class="btn btn-theme-1 type-filter col-xs-12" data-value="league">
+            <input type="checkbox" autocomplete="off"> League
+          </div>
+          <div class="btn btn-theme-1 type-filter col-xs-12" data-value="h2h">
+            <input type="checkbox" autocomplete="off"> Head-to-head
+          </div>
+          <div class="btn btn-theme-1 type-filter col-xs-12" data-value="multiplier">
+            <input type="checkbox" autocomplete="off"> Multiplier
+          </div>                       
+        </div>
+      </div>
+      <div class="horizontal-divider col-xs-12 hidden-xs">
+      </div>
+      <!-- Entry Fee Filters -->
+      <div id="entry-fee-filters" class="col-xs-6 col-sm-12">
+        <label class="filter-label"><h4>Entry Fee</h4></label>
+        <div class="input-group" data-column="minimum">
+          <span class="input-group-addon" id="basic-addon1">$</span>
+          <input type="text" class="form-control cost-filter" placeholder="Minimum">
+        </div>   
+        <div class="input-group" data-column="maximum">
+          <span class="input-group-addon" id="basic-addon1">$</span>
+          <input type="text" class="form-control cost-filter" placeholder="Maximum">
+        </div>                              
+      </div>
+    </div>  
   </div> 
-  <div id="contest-table-container" class="table-responsive col-sm-9">
+  <div id="contest-table-container" class="table-responsive">
     <table id="contest-table" class="table">
     </table>
   </div>

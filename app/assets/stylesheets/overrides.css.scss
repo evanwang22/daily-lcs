@@ -30,10 +30,15 @@
 
 .btn-theme-1:active,
 .btn-theme-1:hover,
-.btn-theme-1:focus {
+.btn-theme-1:focus,
+.btn-theme-1.active {
 	color: $white;
-	background-color:lighten($theme1, 4%);
+	background-color:darken($theme1, 5%);
 }
+.btn-theme-1.active {
+	background-color:darken($theme1, 10%);
+}
+
 
 .btn-theme-2 {
 	color: $white;
@@ -42,7 +47,8 @@
 
 .btn-theme-2:active,
 .btn-theme-2:hover,
-.btn-theme-2:focus {
+.btn-theme-2:focus,
+.btn-theme-2.active {
 	color: $white;
-	background-color:lighten($theme2, 4%);
+	background-color:darken($theme2, 6%);
 }
