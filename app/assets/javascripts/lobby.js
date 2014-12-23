@@ -26,7 +26,7 @@ var idFormatter = function(value, row, index) {
 	return "<a class='btn btn-xs btn-theme-1 btn-block contest-table-enter' href='contests/" + value + "'>Enter</a>";
 };
 
-$(document).ready(function() {
+var lobbyLoadTable = function() {
 	$('#contest-table').bootstrapTable({
 	   	url: '/contests',
 	    striped: true,
@@ -82,5 +82,12 @@ $(document).ready(function() {
 	    	formatter: idFormatter
 	    }],
 	});
-});
+}
 
+// lobby
+$(document).on('page:load', lobbyLoadTable);
+$(document).ready(lobbyLoadTable);
+
+var contestLoad = function() {
+	$.get('/contests/'+window.location.pathname)
+}

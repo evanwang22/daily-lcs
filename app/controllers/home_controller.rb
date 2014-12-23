@@ -19,7 +19,6 @@ class HomeController < ApplicationController
 
 	# GET '/about'
  	def about
-  		render nothing: true
  	end
 
 end
