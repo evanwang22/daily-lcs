@@ -1,2 +1,18 @@
+<% content_for :head do %>
+	<%= javascript_include_tag "contests" %>
+	<%= stylesheet_link_tag "contests" %>
+<% end %>
+
+
 <div id="contest-container" class="row">
+	<h2 id="contest-title"><%= @contest.name %></h2>
+	<h4 id="contest-start"><%= @contest.start %></h4>
+	<h4 id="contest-type"><%= @contest.type %></h4>
+	
+	<!-- TODO: load entry count with JS -->
+	<h4 id="contest-entries">##/<%= @contest.capacity %> spots taken</h4>
+
+	<!-- TODO: form or pure JS? not sure yet -->
+	<a class='btn btn-lg btn-theme-1 btn-block contest-table-enter' href='#'>Enter</a>
+
 </div>
