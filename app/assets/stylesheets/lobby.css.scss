@@ -2,17 +2,24 @@
 
 #lobby-container {
 	background-color: $theme2;
+	max-width:1150px;
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+
+	box-shadow: 0 0 12px 0px rgba(0,0,0,.4)
 }
 
-#filters-container {
-	min-height: 100px;
-}
+@media (min-width: 768px) {
+	#filters-container {
+		max-width: 300px;
+	}
+}	
 
 #filters-container .horizontal-divider {
 	width: 100%;
 	height: 1px;
-	border-top: solid 1px darken($theme2, 30%);
-	border-bottom: solid 1px lighten($theme2, 20%);
+	border-top: solid 1px darken($theme2, 20%);
+	border-bottom: solid 1px lighten($theme2, 60%);
 	margin:15px 0px 5px 0px;
 }
 
@@ -26,7 +33,7 @@
 }
 
 #filters .filter-label {
-	color: $white;
+	color: #999;
 }
 
 #filters .input-group {
@@ -62,6 +69,7 @@
 #contest-table-container {
 	padding: 0px;
 	margin-right:-1px;
+	border-left: 1px solid #ccc;
 }
 
 #contest-table-container .pagination {
@@ -72,7 +80,7 @@
 #contest-table-container .pagination > li > a,
 #contest-table-container .pagination > li > a:hover,
 #contest-table-container .pagination > li > a:focus {
-	color: $theme2;	
+	color: #888;	
 }
 
 #contest-table-container .pagination > .active > a,
@@ -91,7 +99,7 @@
 	margin: 17px 0px;
 	padding-left: 15px;
 	font-weight: bold;
-	color: $theme2;
+	color: #888;
 }
 
 #contest-table-container .fixed-table-after {

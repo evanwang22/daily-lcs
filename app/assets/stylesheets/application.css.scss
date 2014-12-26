@@ -13,10 +13,14 @@
  *= require_self
  */
 #main-container {
-	margin-top: 51px;
+	margin-top: 61px;
 }
 
 #footer {
 	min-height: 200px;
 	background-color: #333;
+}
+
+#navbar-container {
+	max-width: 1150px;
 }

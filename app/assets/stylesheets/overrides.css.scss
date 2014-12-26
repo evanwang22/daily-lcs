@@ -4,6 +4,20 @@
 
 .navbar {
 	margin-bottom: 0px;
+	box-shadow: 0 0 10px 0 rgba(0,0,0,.7);
+}
+
+.navbar-inverse {
+	background-color: #333;
+}
+
+.navbar-brand {
+	height: 60px;
+}
+
+.navbar-nav > li > a {
+	padding-top: 20px;
+	padding-bottom: 20px;
 }
 
 .table {
@@ -36,7 +50,8 @@
 	background-color:darken($theme1, 5%);
 }
 .btn-theme-1.active {
-	background-color:darken($theme1, 10%);
+	box-shadow: none;
+	background-color:$theme3;
 }
 
 
