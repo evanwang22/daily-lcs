@@ -11,7 +11,13 @@ var typeFormatter = function(value, row, index) {
 		return value;
 };
 var timeFormatter = function(value, row, index) {
-	return "Thu 1:00pm";
+	var parts = value.split(' ');
+	var day = parts[0];
+	var time = parts[2].split(':');
+	var period = time[0] < 12 ? 'am' : 'pm';
+	var hour = time[0] < 1 ? 12 : (time[0] < 13 ? time[0] : time[0] - 12);
+	var minute = time[1];
+	return day + ' ' + hour + ':' + minute + period;
 };
 
 var sizeFormatter = function(value, row, index) {
@@ -50,7 +56,7 @@ var lobbyLoadTable = function() {
 	        width: 125,
 	        formatter: typeFormatter
 	    }, {
-	        field: 'start',
+	        field: 'startTime',
 	        title: 'Start',
 	        valign: 'middle',
 	        align: 'right',

@@ -919,7 +919,7 @@
         }
         if (this.options.smartDisplay) {
             if (this.totalPages <= 1) {
-                this.$pagination.find('div.pagination').hide();
+                this.$pagination.find('ul.pagination').hide();
             }
             if (this.options.pageList.length < 2 || this.options.totalRows <= this.options.pageList[1]) {
                 this.$pagination.find('span.page-list').hide();

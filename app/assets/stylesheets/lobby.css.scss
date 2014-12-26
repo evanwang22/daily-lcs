@@ -70,6 +70,8 @@
 	padding: 0px;
 	margin-right:-1px;
 	border-left: 1px solid #ccc;
+	min-height: 700px;
+	background-color: $white;
 }
 
 #contest-table-container .pagination {
@@ -86,7 +88,8 @@
 #contest-table-container .pagination > .active > a,
 #contest-table-container .pagination > .active > a:hover,
 #contest-table-container .pagination > .active > a:focus {
-	font-weight: bold;	
+	font-weight: bold;
+	color:$theme1;	
 }
 
 #contest-table-container .pagination > .disabled > a,
@@ -99,7 +102,7 @@
 	margin: 17px 0px;
 	padding-left: 15px;
 	font-weight: bold;
-	color: #888;
+	color: $theme1;
 }
 
 #contest-table-container .fixed-table-after {
